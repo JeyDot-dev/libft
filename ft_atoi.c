@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsousa-a <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 10:40:58 by jsousa-a          #+#    #+#             */
-/*   Updated: 2022/10/15 14:48:53 by jsousa-a         ###   ########.fr       */
+/*   Created: 2022/10/24 14:08:19 by jsousa-a          #+#    #+#             */
+/*   Updated: 2022/10/24 15:30:26 by jsousa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/* full size of DST. guarantees NUL if room. 
- * copies dstsize -1 from src to dst. \0 if dstsize != 0.
- * return len of SRC
- */
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	ft_atoi(const char *str)
 {
-	size_t	i;
+	long long int	nb;
+	int				isneg;
 
-	i = 0;
-	if (ft_strlen(src) < dstsize)
+	isneg = 0;
+	nb = 0;
+	while ((*str && *str >= 9 && *str <= 13) || (*str && *str == 32))
+		str++;
+	if (*str == 43)
+		str++;
+	else if (*str == 45)
 	{
-		while (src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
+		str++;
+		isneg = 1;
 	}
-	else
+	while (ft_isdigit(*str))
 	{
-		while (i + 1 < dstsize)
-		{
-			dst[i] = src[i];
-			i++;
-		}
+		nb *= 10;
+		nb += *str - 48;
+		str++;
 	}
-	if (dstsize)
-		dst[i] = 0;
-	return (ft_strlen(src));
+	if (isneg == 1)
+		nb *= -1;
+	return ((int) nb);
 }

@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsousa-a <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 10:40:58 by jsousa-a          #+#    #+#             */
-/*   Updated: 2022/10/15 14:48:53 by jsousa-a         ###   ########.fr       */
+/*   Created: 2022/10/15 14:09:01 by jsousa-a          #+#    #+#             */
+/*   Updated: 2022/10/15 15:04:50 by jsousa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/* full size of DST. guarantees NUL if room. 
- * copies dstsize -1 from src to dst. \0 if dstsize != 0.
- * return len of SRC
- */
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
+	unsigned char	cc;
 
-	i = 0;
-	if (ft_strlen(src) < dstsize)
-	{
-		while (src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
-	}
+	cc = c;
+	while (*s && *s != cc)
+		s++;
+	if (*s == cc)
+		return ((char *) s);
 	else
-	{
-		while (i + 1 < dstsize)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-	}
-	if (dstsize)
-		dst[i] = 0;
-	return (ft_strlen(src));
+		return (NULL);
 }
