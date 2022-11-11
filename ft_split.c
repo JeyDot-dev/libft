@@ -6,7 +6,7 @@
 /*   By: jsousa-a <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:37:39 by jsousa-a          #+#    #+#             */
-/*   Updated: 2022/11/11 21:03:55 by jsousa-a         ###   ########.fr       */
+/*   Updated: 2022/11/12 00:28:30 by jsousa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ size_t	ft_ct(char const *s, char c)
 	{
 		if (s[i] != c)
 			ct++;
-		while (s[i] != c)
+		while (s[i] != c && s[i])
 			i++;
-		while (s[i] == c)
+		while (s[i] == c && s[i])
 			i++;
 	}
 	return (ct);
@@ -80,14 +80,52 @@ char	**ft_split(char const *s, char c)
 	strarr[i] = NULL;
 	return (strarr);
 }
-int	main(int ac, char **av)
+/*int	main(void)
+{
+	printf("%li", ft_ct("\0dsada\0ppkd\0", '\0'));
+}*/
+/*int	main(int ac, char **av)
 {
 	(void) ac;
 	size_t	i;
+	char	**lol;
+	lol = ft_split(av[1], av[2][0]);
 	i = 0;
 	while (i <= ft_ct(av[1], av[2][0]))
 	{
-		printf("str %li : %s\n", i, ft_split(av[1], av[2][0])[i]);
+		printf("str %li : %s\n", i, lol[i]);
 		i++;
 	}
-}
+}*/
+/*int main(void)
+{
+    // test FINAL
+
+    char    str[] = "..Macron..e.st.un.pedo.sataniste";
+    char    str2[] = "hello!";
+    char    c = '.';
+    char    c1 = ' ';
+    size_t    i = 0;
+    size_t    j = 0;
+    char    **ptrptrs;
+    char    **ptrptrs2;
+
+    ptrptrs = ft_split(str, c);
+    printf("Voici ce que output ft_split normal:\n\n");
+    while (ptrptrs[i] != NULL)
+    {
+        printf("%s\n", ptrptrs[i]);
+
+        i++;
+    }
+//    printf("%s\n\n", ptrptrs[i]);
+    printf("Voici ce que output ft_split BUGGE:\n\n");
+    ptrptrs2 = ft_split(str2, c1);
+    while (ptrptrs2[j] != NULL)
+    {
+        printf("%s\n", ptrptrs2[j]);
+
+        j++;
+    }
+//    printf("%s\n", ptrptrs2[j]);
+}*/
