@@ -6,7 +6,7 @@
 /*   By: jsousa-a <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:37:39 by jsousa-a          #+#    #+#             */
-/*   Updated: 2022/11/12 00:28:30 by jsousa-a         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:23:44 by jsousa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ size_t	ft_ct(char const *s, char c)
 	}
 	return (ct);
 }
+
 size_t	ft_lenct(char const *s, char c, int i)
 {
 	int	ct;
 
 	ct = 0;
-	if (c == 0)
+	if (c == 0 || !s[i])
 		return (ft_strlen(s));
 	while (s[i] != c && s[i])
 	{
@@ -46,6 +47,7 @@ size_t	ft_lenct(char const *s, char c, int i)
 	}
 	return (ct);
 }
+
 char	**ft_split(char const *s, char c)
 {
 	char	**strarr;
@@ -56,7 +58,7 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	jj = 0;
-	if (s == NULL)
+	if (!s)
 		return (NULL);
 	strct = ft_ct(s, c);
 	strarr = malloc(sizeof(*strarr) * (strct + 1));
@@ -80,14 +82,25 @@ char	**ft_split(char const *s, char c)
 	strarr[i] = NULL;
 	return (strarr);
 }
+// "////popi/popi/"
 /*int	main(void)
 {
-	printf("%li", ft_ct("\0dsada\0ppkd\0", '\0'));
-}*/
+	int		i;
+	char	**lel;
+	lel = ft_split("\0aa\0bbb", '\0');
+	i = 0;
+	while (lel[i])
+	{
+		printf("\n s %i : %s", i, lel[i]);
+		i++;
+	}
+	printf("\n s %i : %s", i, lel[i]);
+}
+*/
 /*int	main(int ac, char **av)
 {
 	(void) ac;
-	size_t	i;
+ 	size_t	i;
 	char	**lol;
 	lol = ft_split(av[1], av[2][0]);
 	i = 0;
@@ -97,6 +110,7 @@ char	**ft_split(char const *s, char c)
 		i++;
 	}
 }*/
+
 /*int main(void)
 {
     // test FINAL
