@@ -6,7 +6,7 @@
 /*   By: jsousa-a <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:37:39 by jsousa-a          #+#    #+#             */
-/*   Updated: 2022/11/14 18:23:44 by jsousa-a         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:17:03 by jsousa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ size_t	ft_ct(char const *s, char c)
 
 	i = 0;
 	ct = 0;
-	if (c == 0)
-		return (1);
 	while (s[i])
 	{
 		if (s[i] != c)
@@ -48,38 +46,42 @@ size_t	ft_lenct(char const *s, char c, int i)
 	return (ct);
 }
 
+char	**ft_freetibet(char **s, int i)
+{
+	while (i >= 0)
+	{
+		free (s[i]);
+		i--;
+	}
+	free (s);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**strarr;
-	size_t	i;
-	size_t	j;
-	size_t	jj;
-	size_t	strct;
+	int		i[3];
+	int		strct;
 
-	i = 0;
-	jj = 0;
+	i[0] = -1;
+	i[2] = 0;
 	if (!s)
 		return (NULL);
 	strct = ft_ct(s, c);
-	strarr = malloc(sizeof(*strarr) * (strct + 1));
+	strarr = ft_calloc(strct + 1, sizeof(*strarr));
 	if (!strarr)
 		return (NULL);
-	while (i < strct)
+	while (++i[0] < strct)
 	{
-		j = 0;
-		while (s[jj] && s[jj] == c)
-			jj++;
-		strarr[i] = malloc(sizeof(**strarr) * (ft_lenct(s, c, jj) + 1));
-		while (s[jj] && s[jj] != c)
-		{
-			strarr[i][j] = s[jj];
-			j++;
-			jj++;
-		}
-		strarr[i][j] = 0;
-		i++;
+		i[1] = 0;
+		while (s[i[2]] && s[i[2]] == c)
+			i[2]++;
+		strarr[i[0]] = ft_calloc(ft_lenct(s, c, i[2]) + 1, sizeof(**strarr));
+		if (!strarr[i[0]])
+			return (ft_freetibet(strarr, i[0]));
+		while (s[i[2]] && s[i[2]] != c)
+			strarr[i[0]][i[1]++] = s[i[2]++];
 	}
-	strarr[i] = NULL;
 	return (strarr);
 }
 // "////popi/popi/"
