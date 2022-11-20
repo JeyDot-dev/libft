@@ -6,7 +6,7 @@
 /*   By: jsousa-a <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:57:12 by jsousa-a          #+#    #+#             */
-/*   Updated: 2022/11/11 14:20:38 by jsousa-a         ###   ########.fr       */
+/*   Updated: 2022/11/20 15:39:53 by jsousa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ int	ft_start(int i, char const *s1, char const *set)
 	i = ft_strlen(s1);
 	if (i > 0)
 		i--;
-	while (i > 0 && ft_strchr(set, s1[i]) != NULL)
+	while (i >= 0 && ft_strchr(set, s1[i]) != NULL)
 		i--;
 	return (i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	j = 0;
@@ -51,6 +51,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	if (!s1 || !set)
 		return (ft_strdup(s1));
+	if (j < 0)
+		return (ft_strdup(""));
 	while (s1[i] && ft_strchr(set, s1[i]) != NULL)
 		i++;
 	if (j < i)
