@@ -6,7 +6,7 @@
 /*   By: jsousa-a <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:01:49 by jsousa-a          #+#    #+#             */
-/*   Updated: 2022/10/26 00:01:24 by jsousa-a         ###   ########.fr       */
+/*   Updated: 2022/11/20 12:31:22 by jsousa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # include <string.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
