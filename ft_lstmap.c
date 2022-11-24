@@ -6,7 +6,7 @@
 /*   By: jsousa-a <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:30:47 by jsousa-a          #+#    #+#             */
-/*   Updated: 2022/11/23 19:41:26 by jsousa-a         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:35:55 by jsousa-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (lst)
 	{
 		newnode = ft_lstnew(f(lst->content));
-		if (!newnode)
+		if (!newnode || !newnode->content)
 		{
-//			ft_lstdelone(newnode, del);
 			ft_lstclear(&new, del);
 			return (NULL);
 		}
